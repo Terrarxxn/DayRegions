@@ -1,0 +1,14 @@
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\DayRegions.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\DayRegions.pdb
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\BCrypt.Net.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\Mono.Data.Sqlite.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\MySql.Data.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\OTAPI.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\TerrariaServer.exe
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\TShockAPI.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\obj\Debug\DayRegions.csproj.AssemblyReference.cache
+C:\Users\bat627\source\repos\DayRegions\DayRegions\obj\Debug\DayRegions.csproj.CoreCompileInputs.cache
+C:\Users\bat627\source\repos\DayRegions\DayRegions\obj\Debug\DayRegions.csproj.CopyComplete
+C:\Users\bat627\source\repos\DayRegions\DayRegions\obj\Debug\DayRegions.dll
+C:\Users\bat627\source\repos\DayRegions\DayRegions\obj\Debug\DayRegions.pdb

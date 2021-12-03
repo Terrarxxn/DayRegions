@@ -11,11 +11,12 @@ using TShockAPI;
 using TShockAPI.DB;
 using Mono.Data.Sqlite;
 using MySql.Data.MySqlClient;
+using Microsoft.Xna.Framework;
 
 namespace DayRegions
 {
 
-    [ApiVersion(1, 15)]
+    [ApiVersion(2, 1)]
     public class DayRegions : TerrariaPlugin
     {
         public static IDbConnection db;
@@ -28,29 +29,29 @@ namespace DayRegions
 
         private void SetupDb()
         {
-            if (TShock.Config.StorageType.ToLower() == "sqlite")
+            if (TShock.Config.Settings.StorageType.ToLower() == "sqlite")
             {
-                string sql = Path.Combine(TShock.SavePath, "InanZen_DB.sqlite");
+                string sql = Path.Combine(TShock.SavePath, "DayRegions.sqlite");
                 db = new SqliteConnection(string.Format("uri=file://{0},Version=3", sql));
             }
-            else if (TShock.Config.StorageType.ToLower() == "mysql")
+            else if (TShock.Config.Settings.StorageType.ToLower() == "mysql")
             {
                 try
                 {
-                    var hostport = TShock.Config.MySqlHost.Split(':');
+                    var hostport = TShock.Config.Settings.MySqlHost.Split(':');
                     db = new MySqlConnection();
                     db.ConnectionString =
                         String.Format("Server={0}; Port={1}; Database={2}; Uid={3}; Pwd={4};",
                                       hostport[0],
                                       hostport.Length > 1 ? hostport[1] : "3306",
-                                      TShock.Config.MySqlDbName,
-                                      TShock.Config.MySqlUsername,
-                                      TShock.Config.MySqlPassword
+                                      TShock.Config.Settings.MySqlDbName,
+                                      TShock.Config.Settings.MySqlUsername,
+                                      TShock.Config.Settings.MySqlPassword
                             );
                 }
                 catch (MySqlException ex)
                 {
-                    Log.Error(ex.ToString());
+                    TShock.Log.Error(ex.ToString());
                     throw new Exception("MySql not setup correctly");
                 }
             }
@@ -83,7 +84,7 @@ namespace DayRegions
         {
             ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
             ServerApi.Hooks.NetSendData.Register(this, SendData);
-            
+
             SetupDb();
             Commands.ChatCommands.Add(new Command("tshock.world.editregion", DayregionCommand, "dayregion"));
         }
@@ -166,7 +167,7 @@ namespace DayRegions
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    Log.Warn(e.Message);
+                    TShock.Log.Warn(e.Message);
                 }
             }
         }
@@ -223,7 +224,7 @@ namespace DayRegions
                 new SqlColumn("ID", MySql.Data.MySqlClient.MySqlDbType.Int32) { Primary = true, AutoIncrement = true, NotNull = true },
                 new SqlColumn("Region", MySql.Data.MySqlClient.MySqlDbType.VarChar) { Unique = true, Length = 30 }
             );
-            SQLcreator.EnsureExists(table);
+            SQLcreator.EnsureTableStructure(table);
         }
         private static bool DayRegions_Add(string name)
         {
